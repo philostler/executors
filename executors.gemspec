@@ -12,6 +12,9 @@ Gem::Specification.new do |s|
   s.summary     = %q{Wrapper for Java's Executor Service classes}
   s.description = %q{Wrapper for Java's Executor Service classes allowing seamless integration with JRuby on Rails}
 
-  s.files         = Dir['lib/**/*.rb']
+  s.has_rdoc = true
+  s.rdoc_options << "--line-numbers"
+
+  s.files         = Dir["lib/**/*.rb"]
   s.require_paths = ["lib"]
 end
