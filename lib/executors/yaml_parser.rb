@@ -7,7 +7,7 @@ module Executors
   module YamlParser
     YAML_EXECUTOR_ID_KEY = "id"
     YAML_EXECUTOR_TYPE_KEY = "type"
-    YAML_EXECUTOR_TYPE_VALID = [ "cached", "fixed", "scheduled", "single" ]
+    YAML_EXECUTOR_TYPE_VALID = [ "cached", "fixed", "scheduled", "single", "single_scheduled" ]
     YAML_EXECUTOR_SIZE_KEY = "size"
     YAML_EXECUTOR_TYPES_REQUIRING_SIZE = [ "fixed", "scheduled" ]
 
@@ -141,6 +141,8 @@ module Executors
           return java.util.concurrent.Executors.new_scheduled_thread_pool size
         when "single"
           return java.util.concurrent.Executors.new_single_thread_executor
+        when "single_scheduled"
+          return java.util.concurrent.Executors.new_single_thread_scheduled_executor
         else
           return nil
       end
