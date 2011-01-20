@@ -9,7 +9,7 @@ module Executors
       attr_accessor :logger
       @@executors = {}
 
-      # Gets an executor with the specified identifer.
+      # Gets an executor with the specified identifer symbol.
       def get(id)
         @@executors[id]
       end
@@ -34,8 +34,14 @@ module Executors
         get_executor "single"
       end
 
-      # Sets an executor against the specified identifer.
+      # Returns a single ScheduledExecutorService[http://download.oracle.com/javase/6/docs/api/java/util/concurrent/Executors.html#newSingleThreadScheduledExecutor()].
+      def get_single_scheduled_executor()
+        get_executor "single_scheduled"
+      end
+
+      # Sets an executor against the specified identifer symbol.
       def set(id, executor)
+        id = id.to_sym unless id.is_a? Symbol
         @@executors[id] = executor
       end
     end
