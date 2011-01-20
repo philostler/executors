@@ -1,0 +1,16 @@
+=Changelog
+
+==0.0.3
+* README added
+* Added ability to load a single threaded scheduler executor via a YAML configuration file
+* Helper to instantiate a single threaded scheduler executor added
+* Identifier conversation to symbol bug fixed
+
+==0.0.2
+* RDoc added
+* Refactoring of YAML parsing into separate module
+* Helpers for executor instantiation added
+
+==0.0.1
+* Added ability to load multiple executor services and their associated commands via a YAML configuration file
+* Added functions to get and set an externally instantiated executor service
