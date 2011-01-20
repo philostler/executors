@@ -1,1 +1,53 @@
 =Executors
+==Introduction
+Executors is a wrapper for Java's Executor Service classes allowing seamless integration with JRuby on Rails.
+
+Multiple executor services and their associated commands can be instantiated via a configuration file and are then easily accessible from any point within a Rails application.
+
+==Installation
+  gem "executors"
+
+==Initialising
+Example initializer.
+
+  require "executors/services"
+
+  Executors::Services.logger = Logger.new(STDOUT)
+  Executors::Services.load_yaml_string YAML.load_file(Rails.root.join("config", "executors.yml"))
+
+You can load a configuration file that is structured similar to <tt>database.yml</tt> (with development, test and production subsections) by using <tt>[Rails.env]</tt>.
+
+  Executors::Services.load_yaml_string YAML.load_file(Rails.root.join("config", "executors.yml"))[Rails.env]
+
+Not providing a logger via <tt>Executors::Services.logger</tt> will mean failures will be silent.
+
+==Configuration
+Example YAML configuration.
+
+  - id: scheduler
+    type: scheduled         # cached | fixed | scheduled | single | single_scheduled
+    size: 1                 # number of threads
+    commands:               # optional
+     - command: MyCommand   # class name
+       initial: 1           # initial delay
+       delay: 60            # delay
+       units: minutes       # days | hours | microseconds | milliseconds | minutes | nanoseconds | seconds
+  - id: pre_processing
+    type: fixed
+    size: 5
+  - id: processing
+    type: cached
+
+==Commands
+Submitting a command to an executor. A command must implement either the Callable[http://download.oracle.com/javase/6/docs/api/java/util/concurrent/Callable.html] or Runnable[http://download.oracle.com/javase/6/docs/api/java/lang/Runnable.html] Java interfaces.
+
+  command = MyCommand.new
+  Executors::Services.get(:processing).submit command
+
+When processing across multiple executors, use the returned Future[http://download.oracle.com/javase/6/docs/api/java/util/concurrent/Future.html] object to track progress.
+
+  command_one = MyCommandOne.new
+  future = Executors::Services.get(:pre_processing).submit command_one
+
+  command_two = MyCommandTwo.new future
+  Executors::Services.get(:processing).submit command_two
