@@ -9,12 +9,12 @@ Gem::Specification.new do |s|
   s.authors     = ["Phil Ostler"]
   s.email       = ["philostler@gmail.com"]
   s.homepage    = "https://github.com/philostler/executors"
-  s.summary     = %q{Wrapper for Java's Executor Service classes}
-  s.description = %q{Wrapper for Java's Executor Service classes allowing seamless integration with JRuby on Rails}
+  s.summary     = %q{JRuby targeted wrapper for Java's Executor framework}
+  s.description = %q{Wrapper for Java's Executor framework allowing seamless integration with JRuby on Rails}
 
   s.has_rdoc = true
   s.rdoc_options << "--line-numbers"
 
-  s.files         = Dir["lib/**/*.rb"]
+  s.files         = Dir["lib/**/*.rb"] + Dir["*.rdoc"] + Dir["LICENSE"]
   s.require_paths = ["lib"]
 end
