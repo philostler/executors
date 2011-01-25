@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Phil Ostler"]
   s.email       = ["philostler@gmail.com"]
   s.homepage    = "https://github.com/philostler/executors"
-  s.summary     = %q{JRuby targeted wrapper for Java's Executor framework}
+  s.summary     = %q{Java Executor framework wrapper for JRuby}
   s.description = %q{Wrapper for Java's Executor framework allowing seamless integration with JRuby on Rails}
 
   s.has_rdoc = true
