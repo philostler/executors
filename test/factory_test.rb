@@ -23,7 +23,7 @@ class FactoryTest < Test::Unit::TestCase
     assert_not_nil executor
     assert executor.java_kind_of? ExecutorService
 
-    assert_raise ArgumentError do
+    assert_raise TypeError do
       Executors::Factory.get_fixed_executor nil
     end
     assert_raise ArgumentError do
@@ -47,7 +47,7 @@ class FactoryTest < Test::Unit::TestCase
     assert_not_nil executor
     assert executor.java_kind_of? ScheduledExecutorService
 
-    assert_raise ArgumentError do
+    assert_raise TypeError do
       Executors::Factory.get_scheduled_executor nil
     end
     assert_raise ArgumentError do
