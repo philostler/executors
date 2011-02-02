@@ -23,15 +23,20 @@ class FactoryTest < Test::Unit::TestCase
     assert_not_nil executor
     assert executor.java_kind_of? ExecutorService
 
-    assert_raise TypeError do
+    exception = assert_raise TypeError do
       Executors::Factory.get_fixed_executor nil
     end
-    assert_raise ArgumentError do
+    assert_equal "size cannot be nil", exception.message
+
+    exception = assert_raise ArgumentError do
       Executors::Factory.get_fixed_executor 0
     end
-    assert_raise ArgumentError do
+    assert_equal "size must be larger than 0", exception.message
+
+    exception = assert_raise ArgumentError do
       Executors::Factory.get_fixed_executor "string"
     end
+    assert_equal "size must be larger than 0", exception.message
   end
 
   def test_get_scheduled_executor
@@ -47,15 +52,20 @@ class FactoryTest < Test::Unit::TestCase
     assert_not_nil executor
     assert executor.java_kind_of? ScheduledExecutorService
 
-    assert_raise TypeError do
+    exception = assert_raise TypeError do
       Executors::Factory.get_scheduled_executor nil
     end
-    assert_raise ArgumentError do
+    assert_equal "size cannot be nil", exception.message
+
+    exception = assert_raise ArgumentError do
       Executors::Factory.get_scheduled_executor 0
     end
-    assert_raise ArgumentError do
+    assert_equal "size must be larger than 0", exception.message
+
+    exception = assert_raise ArgumentError do
       Executors::Factory.get_scheduled_executor "string"
     end
+    assert_equal "size must be larger than 0", exception.message
   end
 
   def test_get_single_executor
