@@ -39,11 +39,11 @@ module Executors
           when CACHED_EXECUTOR
             return java.util.concurrent.Executors.new_cached_thread_pool
           when FIXED_EXECUTOR
-            raise ArgumentError, "size cannot be nil" unless size
+            raise TypeError, "size cannot be nil" unless size
             raise ArgumentError, "size must be larger than 0" unless size.to_i > 0
             return java.util.concurrent.Executors.new_fixed_thread_pool size.to_i
           when SCHEDULED_EXECUTOR
-            raise ArgumentError, "size cannot be nil" unless size
+            raise TypeError, "size cannot be nil" unless size
             raise ArgumentError, "size must be larger than 0" unless size.to_i > 0
             return java.util.concurrent.Executors.new_scheduled_thread_pool size.to_i
           when SINGLE_EXECUTOR
