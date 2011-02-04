@@ -17,7 +17,7 @@ module Executors
 
       # Adds an executor against the specified identifer.
       def add id, executor
-        id = validate_id id
+        id = get_validated_id id
 
         raise TypeError, "executor cannot be nil" unless executor
         raise TypeError, "executor must be of type Executor" unless executor.is_a? Executor
@@ -31,7 +31,7 @@ module Executors
 
       # Gets the executor held against the specified identifer.
       def get id
-        id = validate_id id
+        id = get_validated_id id
 
         return @@executors[id]
       end
@@ -49,7 +49,7 @@ module Executors
 
       # Removes and returns the executor held against the specified identifer.
       def remove id
-        id = validate_id id
+        id = get_validated_id id
 
         return @@executors.delete id
       end
@@ -134,7 +134,7 @@ module Executors
       private
       @@executors = Hash.new
 
-      def validate_id id
+      def get_validated_id id
         raise TypeError, "id cannot be nil" unless id
         raise TypeError, "id must be of type String or Symbol" unless id.is_a? String or id.is_a? Symbol
 
