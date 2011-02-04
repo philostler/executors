@@ -23,6 +23,7 @@ class FactoryTest < Test::Unit::TestCase
     assert_not_nil executor
     assert executor.java_kind_of? ExecutorService
 
+    # size
     exception = assert_raise TypeError do
       Executors::Factory.get_fixed_executor nil
     end
@@ -52,6 +53,7 @@ class FactoryTest < Test::Unit::TestCase
     assert_not_nil executor
     assert executor.java_kind_of? ScheduledExecutorService
 
+    # size
     exception = assert_raise TypeError do
       Executors::Factory.get_scheduled_executor nil
     end
