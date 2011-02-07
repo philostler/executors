@@ -8,33 +8,33 @@ module Executors
       SINGLE_EXECUTOR = "single"
       SINGLE_SCHEDULED_EXECUTOR = "single_scheduled"
 
-      # Returns a cached ExecutorService[http://download.oracle.com/javase/6/docs/api/java/util/concurrent/Executors.html#newCachedThreadPool()].
-      def get_cached_executor
-        get_executor CACHED_EXECUTOR
+      # Creates a cached ExecutorService[http://download.oracle.com/javase/6/docs/api/java/util/concurrent/Executors.html#newCachedThreadPool()].
+      def create_cached_executor
+        create_executor CACHED_EXECUTOR
       end
 
-      # Returns a fixed size ExecutorService[http://download.oracle.com/javase/6/docs/api/java/util/concurrent/Executors.html#newFixedThreadPool(int)].
-      def get_fixed_executor size
-        get_executor FIXED_EXECUTOR, size
+      # Creates a fixed size ExecutorService[http://download.oracle.com/javase/6/docs/api/java/util/concurrent/Executors.html#newFixedThreadPool(int)].
+      def create_fixed_executor size
+        create_executor FIXED_EXECUTOR, size
       end
 
-      # Returns a fixed size ScheduledExecutorService[http://download.oracle.com/javase/6/docs/api/java/util/concurrent/Executors.html#newScheduledThreadPool(int)].
-      def get_scheduled_executor size
-        get_executor SCHEDULED_EXECUTOR, size
+      # Creates a fixed size ScheduledExecutorService[http://download.oracle.com/javase/6/docs/api/java/util/concurrent/Executors.html#newScheduledThreadPool(int)].
+      def create_scheduled_executor size
+        create_executor SCHEDULED_EXECUTOR, size
       end
 
-      # Returns a single threaded ExecutorService[http://download.oracle.com/javase/6/docs/api/java/util/concurrent/Executors.html#newSingleThreadExecutor()].
-      def get_single_executor
-        get_executor SINGLE_EXECUTOR
+      # Creates a single threaded ExecutorService[http://download.oracle.com/javase/6/docs/api/java/util/concurrent/Executors.html#newSingleThreadExecutor()].
+      def create_single_executor
+        create_executor SINGLE_EXECUTOR
       end
 
-      # Returns a single threaded ScheduledExecutorService[http://download.oracle.com/javase/6/docs/api/java/util/concurrent/Executors.html#newSingleThreadScheduledExecutor()].
-      def get_single_scheduled_executor
-        get_executor SINGLE_SCHEDULED_EXECUTOR
+      # Creates a single threaded ScheduledExecutorService[http://download.oracle.com/javase/6/docs/api/java/util/concurrent/Executors.html#newSingleThreadScheduledExecutor()].
+      def create_single_scheduled_executor
+        create_executor SINGLE_SCHEDULED_EXECUTOR
       end
 
       protected
-      def get_executor type, size = nil
+      def create_executor type, size = nil
         case type
           when CACHED_EXECUTOR
             return java.util.concurrent.Executors.new_cached_thread_pool

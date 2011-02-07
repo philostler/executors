@@ -7,7 +7,7 @@ class ServicesTest < Test::Unit::TestCase
 
   def test_add
     id = "id"
-    executor = get_test_executor
+    executor = create_test_executor
 
     returned_id = Executors::Services.add id, executor
 
@@ -38,7 +38,7 @@ class ServicesTest < Test::Unit::TestCase
 
     # id, executor
     exception = assert_raise ArgumentError do
-      executor = get_test_executor
+      executor = create_test_executor
       Executors::Services.add "id", executor
       Executors::Services.add "id_two", executor
     end
@@ -47,7 +47,7 @@ class ServicesTest < Test::Unit::TestCase
 
   def test_get
     id = "id"
-    executor = get_test_executor
+    executor = create_test_executor
 
     returned_id = Executors::Services.add id, executor
     returned_executor = Executors::Services.get id
@@ -72,8 +72,8 @@ class ServicesTest < Test::Unit::TestCase
   def test_get_all
     id = "id"
     id_two = "id_two"
-    executor = get_test_executor
-    executor_two = get_test_executor
+    executor = create_test_executor
+    executor_two = create_test_executor
 
     Executors::Services.add id, executor
     Executors::Services.add id_two, executor_two
@@ -88,7 +88,7 @@ class ServicesTest < Test::Unit::TestCase
 
   def test_remove
     id = "id"
-    executor = get_test_executor
+    executor = create_test_executor
 
     Executors::Services.add id, executor
 
@@ -114,8 +114,8 @@ class ServicesTest < Test::Unit::TestCase
   def test_remove_all
     id = "id"
     id_two = "id_two"
-    executor = get_test_executor
-    executor_two = get_test_executor
+    executor = create_test_executor
+    executor_two = create_test_executor
 
     Executors::Services.add id, executor
     Executors::Services.add id_two, executor_two
@@ -134,8 +134,8 @@ class ServicesTest < Test::Unit::TestCase
   def test_shutdown
     id = "id"
     id_two = "id_two"
-    executor = get_test_executor
-    executor_two = get_test_executor
+    executor = create_test_executor
+    executor_two = create_test_executor
 
     Executors::Services.add id, executor
     Executors::Services.add id_two, executor_two
@@ -181,8 +181,8 @@ class ServicesTest < Test::Unit::TestCase
   def test_shutdown_now
     id = "id"
     id_two = "id_two"
-    executor = get_test_executor
-    executor_two = get_test_executor
+    executor = create_test_executor
+    executor_two = create_test_executor
 
     Executors::Services.add id, executor
     Executors::Services.add id_two, executor_two
@@ -201,20 +201,20 @@ class ServicesTest < Test::Unit::TestCase
     assert_equal 0, Executors::Services.size
 
     id = "id"
-    executor = get_test_executor
+    executor = create_test_executor
     Executors::Services.add id, executor
 
     assert_equal 1, Executors::Services.size
 
     id_two = "id_two"
-    executor_two = get_test_executor
+    executor_two = create_test_executor
     Executors::Services.add id_two, executor_two
 
     assert_equal 2, Executors::Services.size
   end
 
   private
-  def get_test_executor
-    Executors::Factory.get_single_executor
+  def create_test_executor
+    Executors::Factory.create_single_executor
   end
 end
