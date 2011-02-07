@@ -17,7 +17,9 @@ class YamlParserValidationIdTest < Test::Unit::TestCase
       - id: true
       - id: 0
       - id: duplicate
+        type: single
       - id: duplicate
+        type: single
 "
   end
 end
