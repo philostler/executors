@@ -6,6 +6,10 @@ module YamlParserLoggingTest
 
   @invocation_count = nil
 
+  def teardown
+    Executors::Services.remove_all
+  end
+
   def test_load_yaml_string
     @invocation_count = 0
 
