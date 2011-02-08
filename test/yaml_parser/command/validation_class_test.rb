@@ -1,6 +1,6 @@
 require "yaml_parser/yaml_parser_logging_test"
 
-class ValidationCommandTest < Test::Unit::TestCase
+class ValidationClassTest < Test::Unit::TestCase
   include YamlParserLoggingTest
 
   def setup
