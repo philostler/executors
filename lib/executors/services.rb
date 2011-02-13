@@ -20,9 +20,9 @@ module Executors
         id = get_validated_id id
 
         raise TypeError, "executor cannot be nil" unless executor
-        raise TypeError, "executor must be of type Executor" unless executor.is_a? Executor
+        raise TypeError, "executor must be a executor" unless executor.is_a? Executor
 
-        raise ArgumentError, "executor instance has already been added against id \"" + id.to_s + "\". Duplicates not allowed" unless not @@executors.has_key? id
+        raise ArgumentError, "executor instance has already been defined for \"" + id.to_s + "\". Duplicates not allowed" unless not @@executors.has_key? id
 
         @@executors[id] = executor
 
@@ -65,18 +65,20 @@ module Executors
         return executors
       end
 
-      # Attempts a shutdown of all executors, allowing all active and waiting commands to execute while rejecting requests to enqueue new commands. Returns an <code>Array</code> of identifers that either could not be confirmed as, or failed to shutdown.
+      # Attempts a shutdown of all executors, allowing all active and waiting tasks to execute while rejecting requests to enqueue new tasks. Returns an <code>Array</code> of identifers that either could not be confirmed as, or failed to shutdown.
       def shutdown await_termination = true, timeout = 30, units = "seconds"
         raise TypeError, "await_termination cannot be nil" unless await_termination
 
         raise TypeError, "timeout cannot be nil" unless timeout
+        raise TypeError, "timeout must be a number" unless timeout.is_a? Fixnum
         raise ArgumentError, "timeout must be larger than 0" unless timeout.to_i > 0
 
         raise TypeError, "units cannot be nil" unless units
+        raise TypeError, "units must be a string" unless units.is_a? String
         begin
           units = TimeUnit.value_of units.upcase
         rescue IllegalArgumentException
-          raise ArgumentError, "units must be of value \"nanoseconds\", \"microseconds\", \"milliseconds\", \"seconds\", \"minutes\", \"hours\" or \"days\""
+          raise ArgumentError, "units must be \"nanoseconds\", \"microseconds\", \"milliseconds\", \"seconds\", \"minutes\", \"hours\" or \"days\""
         end
 
         not_shutdown = Array.new
@@ -89,25 +91,25 @@ module Executors
               terminated = executor.await_termination timeout, units
               if !terminated
                 not_shutdown << id
-                logger.warn { "Executor with id of \"" + id.to_s + "\" timed out while awaiting shutdown. Unable to confirm shutdown" } unless logger.nil?
+                logger.warn { "\"" + id.to_s + "\" executor timed out while awaiting shutdown. Unable to confirm shutdown" } unless logger.nil?
               end
             end
           rescue InterruptedException
             not_shutdown << id
-            logger.warn { "Executor with id of \"" + id.to_s + "\" was interrupted while awaiting shutdown. Unable to confirm shutdown" } unless logger.nil?
+            logger.warn { "\"" + id.to_s + "\" executor was interrupted while awaiting shutdown. Unable to confirm shutdown" } unless logger.nil?
           rescue RuntimePermission
             not_shutdown << id
-            logger.warn { "Executor with id of \"" + id.to_s + "\" failed to shutdown. Security manager denied access" } unless logger.nil?
+            logger.warn { "\"" + id.to_s + "\" executor failed to shutdown. Security manager denied access" } unless logger.nil?
           rescue SecurityException
             not_shutdown << id
-            logger.warn { "Executor with id of \"" + id.to_s + "\" failed to shutdown. Security error due to possible manipulation of threads that the caller is not permitted to modify" } unless logger.nil?
+            logger.warn { "\"" + id.to_s + "\" executor failed to shutdown. Security error due to possible manipulation of threads that the caller is not permitted to modify" } unless logger.nil?
           end
         end
 
         return not_shutdown
       end
 
-      # Attempts a shutdown of all active and waiting commands upon all executors. Returns an <code>Array</code> of identifers that threw an exception when shutdown was attempted.
+      # Attempts a shutdown of all active and waiting tasks upon all executors. Returns an <code>Array</code> of identifers that threw an exception when shutdown was attempted.
       def shutdown_now
         shutdown_exceptions = Array.new
 
@@ -116,10 +118,10 @@ module Executors
             executor.shutdown_now
           rescue RuntimePermission
             shutdown_exceptions << id
-            logger.warn { "Executor with id of \"" + id.to_s + "\" failed to shutdown. Security manager denied access" } unless logger.nil?
+            logger.warn { "\"" + id.to_s + "\" executor failed to shutdown. Security manager denied access" } unless logger.nil?
           rescue SecurityException
             shutdown_exceptions << id
-            logger.warn { "Executor with id of \"" + id.to_s + "\" failed to shutdown. Security error due to possible manipulation of threads that the caller is not permitted to modify" } unless logger.nil?
+            logger.warn { "\"" + id.to_s + "\" executor failed to shutdown. Security error due to possible manipulation of threads that the caller is not permitted to modify" } unless logger.nil?
           end
         end
 
@@ -136,7 +138,7 @@ module Executors
 
       def get_validated_id id
         raise TypeError, "id cannot be nil" unless id
-        raise TypeError, "id must be of type String or Symbol" unless id.is_a? String or id.is_a? Symbol
+        raise TypeError, "id must be a string or symbol" unless id.is_a? String or id.is_a? Symbol
 
         id = id.to_sym unless id.is_a? Symbol
 
