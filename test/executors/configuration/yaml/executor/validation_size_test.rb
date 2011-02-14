@@ -5,12 +5,12 @@ class ValidationSizeTest < Test::Unit::TestCase
 
   def setup
     @expected = [
-      { :level => "warn", :message => "Loading YAML executor definition \"identifier\". \"size\" is missing. Skipping" },
-      { :level => "warn", :message => "Loading YAML executor definition \"identifier\". \"size\" is missing. Skipping" },
-      { :level => "warn", :message => "Loading YAML executor definition \"identifier\". \"size\" must be a number. Skipping" },
-      { :level => "warn", :message => "Loading YAML executor definition \"identifier\". \"size\" must be larger than 0. Skipping" },
-      { :level => "warn", :message => "Loading YAML executor definition \"identifier\". \"size\" must be a number. Skipping" },
-      { :level => "info", :message => "Loading YAML executor definition \"identifier\". \"size\" is not required. Ignored" }
+      { :level => "error", :message => "Loading YAML executor definition \"identifier\". \"size\" is missing. Skipping" },
+      { :level => "error", :message => "Loading YAML executor definition \"identifier\". \"size\" is missing. Skipping" },
+      { :level => "error", :message => "Loading YAML executor definition \"identifier\". \"size\" must be a number. Skipping" },
+      { :level => "error", :message => "Loading YAML executor definition \"identifier\". \"size\" must be larger than 0. Skipping" },
+      { :level => "error", :message => "Loading YAML executor definition \"identifier\". \"size\" must be a number. Skipping" },
+      { :level => "warn", :message => "Loading YAML executor definition \"identifier\". \"size\" is not required. Ignored" }
     ]
     @yaml_string = "
       - id: identifier

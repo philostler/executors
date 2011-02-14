@@ -5,11 +5,11 @@ class ValidationIdTest < Test::Unit::TestCase
 
   def setup
     @expected = [
-      { :level => "warn", :message => "Loading YAML executor definition. \"id\" is missing. Skipping" },
-      { :level => "warn", :message => "Loading YAML executor definition. \"id\" is missing. Skipping" },
-      { :level => "warn", :message => "Loading YAML executor definition. \"id\" must be a string. Skipping" },
-      { :level => "warn", :message => "Loading YAML executor definition. \"id\" must be a string. Skipping" },
-      { :level => "warn", :message => "Loading YAML executor definition. \"id\" of \"duplicate\" has already been defined. Duplicates not allowed. Skipping" }
+      { :level => "error", :message => "Loading YAML executor definition. \"id\" is missing. Skipping" },
+      { :level => "error", :message => "Loading YAML executor definition. \"id\" is missing. Skipping" },
+      { :level => "error", :message => "Loading YAML executor definition. \"id\" must be a string. Skipping" },
+      { :level => "error", :message => "Loading YAML executor definition. \"id\" must be a string. Skipping" },
+      { :level => "error", :message => "Loading YAML executor definition. \"id\" of \"duplicate\" has already been defined. Duplicates not allowed. Skipping" }
     ]
     @yaml_string = "
       - no_id: no_id

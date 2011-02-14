@@ -5,10 +5,10 @@ class ValidationTypeTest < Test::Unit::TestCase
 
   def setup
     @expected = [
-      { :level => "warn", :message => "Loading YAML executor definition \"identifier\". \"type\" is missing. Skipping" },
-      { :level => "warn", :message => "Loading YAML executor definition \"identifier\". \"type\" is missing. Skipping" },
-      { :level => "warn", :message => "Loading YAML executor definition \"identifier\". \"type\" must be a executor type. Skipping" },
-      { :level => "warn", :message => "Loading YAML executor definition \"identifier\". \"type\" must be a executor type. Skipping" }
+      { :level => "error", :message => "Loading YAML executor definition \"identifier\". \"type\" is missing. Skipping" },
+      { :level => "error", :message => "Loading YAML executor definition \"identifier\". \"type\" is missing. Skipping" },
+      { :level => "error", :message => "Loading YAML executor definition \"identifier\". \"type\" must be a executor type. Skipping" },
+      { :level => "error", :message => "Loading YAML executor definition \"identifier\". \"type\" must be a executor type. Skipping" }
     ]
     @yaml_string = "
       - id: identifier

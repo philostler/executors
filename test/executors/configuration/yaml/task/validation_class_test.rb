@@ -5,11 +5,11 @@ class ValidationClassTest < Test::Unit::TestCase
 
   def setup
     @expected = [
-      { :level => "warn", :message => "Loading YAML task definition for \"identifier\". \"class\" is missing. Skipping" },
-      { :level => "warn", :message => "Loading YAML task definition for \"identifier_two\". \"class\" is missing. Skipping" },
-      { :level => "warn", :message => "Loading YAML task definition for \"identifier_three\". \"class\" must be a string. Skipping" },
-      { :level => "warn", :message => "Loading YAML task definition for \"identifier_four\". \"class\" must be a string. Skipping" },
-      { :level => "warn", :message => "Loading YAML task definition for \"identifier_five\". \"class\" must be a reference to an existing class. Skipping" }
+      { :level => "error", :message => "Loading YAML task definition for \"identifier\". \"class\" is missing. Skipping" },
+      { :level => "error", :message => "Loading YAML task definition for \"identifier_two\". \"class\" is missing. Skipping" },
+      { :level => "error", :message => "Loading YAML task definition for \"identifier_three\". \"class\" must be a string. Skipping" },
+      { :level => "error", :message => "Loading YAML task definition for \"identifier_four\". \"class\" must be a string. Skipping" },
+      { :level => "error", :message => "Loading YAML task definition for \"identifier_five\". \"class\" must be a reference to an existing class. Skipping" }
     ]
     @yaml_string = "
       - id: identifier

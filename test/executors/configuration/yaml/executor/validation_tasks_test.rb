@@ -5,7 +5,7 @@ class ValidationTasksTest < Test::Unit::TestCase
 
   def setup
     @expected = [
-      { :level => "warn", :message => "Loading YAML executor definition \"identifier\". \"tasks\" must be a array. Skipping" }
+      { :level => "error", :message => "Loading YAML executor definition \"identifier\". \"tasks\" must be a array. Skipping" }
     ]
     @yaml_string = "
       - id: identifier
