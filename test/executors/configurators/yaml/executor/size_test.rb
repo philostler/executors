@@ -1,4 +1,4 @@
-require "executors/configuration/configurator_logging_test"
+require "executors/configurators/configurator_logging_test"
 
 class SizeTest < Test::Unit::TestCase
   include ConfiguratorLoggingTest

@@ -1,4 +1,4 @@
-require "executors/configuration/yaml/configurator_logging_test"
+require "executors/configurators/yaml/configurator_logging_test"
 
 class ValidationEveryTest < Test::Unit::TestCase
   include ConfiguratorLoggingTest
@@ -7,10 +7,10 @@ class ValidationEveryTest < Test::Unit::TestCase
     @expected = [
       { :level => "error", :message => "Loading YAML task definition for \"identifier\". \"every\" is missing. Skipping" },
       { :level => "error", :message => "Loading YAML task definition for \"identifier_two\". \"every\" is missing. Skipping" },
-      { :level => "error", :message => "Loading YAML task definition for \"identifier_three\". \"every\" must be a string. Skipping" },
-      { :level => "error", :message => "Loading YAML task definition for \"identifier_four\". \"every\" must be a string. Skipping" },
-      { :level => "error", :message => "Loading YAML task definition for \"identifier_five\". \"every\" is incorrectly formed. Skipping" },
-      { :level => "error", :message => "Loading YAML task definition for \"identifier_six\". \"every\" is incorrectly formed. Skipping" },
+      { :level => "error", :message => "Loading YAML task definition for \"identifier_three\". \"every\" is malformed. Skipping" },
+      { :level => "error", :message => "Loading YAML task definition for \"identifier_four\". \"every\" is malformed. Skipping" },
+      { :level => "error", :message => "Loading YAML task definition for \"identifier_five\". \"every\" is malformed. Skipping" },
+      { :level => "error", :message => "Loading YAML task definition for \"identifier_six\". \"every\" is malformed. Skipping" },
       { :level => "error", :message => "Loading YAML task definition for \"identifier_seven\". \"every\" must be larger than 0. Skipping" },
       { :level => "error", :message => "Loading YAML task definition for \"identifier_eight\". \"every\" must be larger than 0. Skipping" },
       { :level => "error", :message => "Loading YAML task definition for \"identifier_nine\". \"every\" must be a units type. Skipping" },

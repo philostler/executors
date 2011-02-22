@@ -1,16 +1,16 @@
-require "executors/configuration/yaml/configurator_logging_test"
+require "executors/configurators/yaml/configurator_logging_test"
 
 class ValidationStartTest < Test::Unit::TestCase
   include ConfiguratorLoggingTest
 
   def setup
     @expected = [
-      { :level => "warn", :message => "Loading YAML task definition for \"identifier\". \"start\" is not required. Ignored" },
-      { :level => "warn", :message => "Loading YAML task definition for \"identifier_two\". \"start\" is not required. Ignored" },
-      { :level => "error", :message => "Loading YAML task definition for \"identifier_three\". \"start\" must be a string. Skipping" },
-      { :level => "error", :message => "Loading YAML task definition for \"identifier_four\". \"start\" must be a string. Skipping" },
-      { :level => "error", :message => "Loading YAML task definition for \"identifier_five\". \"start\" is incorrectly formed. Skipping" },
-      { :level => "error", :message => "Loading YAML task definition for \"identifier_six\". \"start\" is incorrectly formed. Skipping" },
+      { :level => "warn", :message => "Loading YAML task definition for \"identifier\". \"start\" is not required. Ignoring" },
+      { :level => "warn", :message => "Loading YAML task definition for \"identifier_two\". \"start\" is not required. Ignoring" },
+      { :level => "error", :message => "Loading YAML task definition for \"identifier_three\". \"start\" is malformed. Skipping" },
+      { :level => "error", :message => "Loading YAML task definition for \"identifier_four\". \"start\" is malformed. Skipping" },
+      { :level => "error", :message => "Loading YAML task definition for \"identifier_five\". \"start\" is malformed. Skipping" },
+      { :level => "error", :message => "Loading YAML task definition for \"identifier_six\". \"start\" is malformed. Skipping" },
       { :level => "error", :message => "Loading YAML task definition for \"identifier_seven\". \"start\" must be larger than or equal to 0. Skipping" },
       { :level => "error", :message => "Loading YAML task definition for \"identifier_eight\". \"start\" must be larger than or equal to 0. Skipping" },
       { :level => "error", :message => "Loading YAML task definition for \"identifier_nine\". \"start\" must be a units type. Skipping" },

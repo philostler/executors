@@ -1,4 +1,4 @@
-require "executors/configuration/yaml/configurator_logging_test"
+require "executors/configurators/yaml/configurator_logging_test"
 
 class ValidationScheduleTest < Test::Unit::TestCase
   include ConfiguratorLoggingTest
