@@ -12,7 +12,7 @@ module ConfiguratorLoggingTest
     Executors::Services.remove_all
   end
 
-  def test_load_yaml_string
+  def test_load_file
     @invocations = 0
 
     Executors::Services.logger = self
