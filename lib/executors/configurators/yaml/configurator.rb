@@ -1,10 +1,10 @@
 require "rubygems"
 require "kwalify"
-require "executors/configuration/yaml/validator"
+require "executors/configurators/yaml/validator"
 
 # YAML configurator.
 module Executors
-  module Configuration
+  module Configurators
     module Yaml
       module Configurator
         ID_KEY = "id"

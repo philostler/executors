@@ -1,5 +1,5 @@
 module Executors
-  module Configuration
+  module Configurators
     module Yaml
       class Validator < Kwalify::Validator
         EXECUTOR_RULE_NAME = "executor"

@@ -1,4 +1,4 @@
-require "executors/configuration/yaml/configurator"
+require "executors/configurators/yaml/configurator"
 
 java_import java.lang.IllegalArgumentException
 java_import java.lang.InterruptedException
@@ -10,7 +10,7 @@ java_import java.util.concurrent.TimeUnit
 module Executors
   # Executors main interface. Provides individual and collective operations against executors as well as configurator access.
   class Services
-    extend Executors::Configuration::Yaml::Configurator
+    extend Executors::Configurators::Yaml::Configurator
 
     class << self
       attr_accessor :logger
