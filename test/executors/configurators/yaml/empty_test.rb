@@ -7,7 +7,7 @@ class EmptyTest < Test::Unit::TestCase
     @method = "load_yaml_file"
     @files = [ File.join(File.dirname(__FILE__), self.class.name.split(/(?=[A-Z])/).join("_").downcase) + ".yml" ]
     @logs = [
-      { :level => "error", :message => "Loading YAML document. Document is empty. Aborting" }
+      { :level => "error", :message => "Validating YAML document. Document is empty. Aborting" }
     ]
   end
 end
