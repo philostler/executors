@@ -10,12 +10,12 @@ Gem::Specification.new do |s|
   s.email       = ["philostler@gmail.com"]
   s.homepage    = "https://github.com/philostler/executors"
   s.summary     = %q{Java Executor framework wrapper for JRuby}
-  s.description = %q{Wrapper for Java's Executor framework allowing seamless integration with JRuby on Rails}
+  s.description = %q{Wrapper for Java's Executor framework allowing seamless integration with JRuby and Rails}
 
   s.has_rdoc = true
   s.rdoc_options << "--line-numbers"
 
-  s.files         = Dir["lib/**/*.rb"] + Dir["*.rdoc"] + Dir["LICENSE"]
+  s.files         = Dir["lib/**/*.rb"] + Dir["lib/**/*.yml"] + Dir["*.rdoc"] + Dir["LICENSE"]
   s.require_paths = ["lib"]
 
   s.add_dependency "kwalify", ">= 0.7.2"
