@@ -1,3 +1,6 @@
+require "executors/configurators/yaml/validation_warn"
+
+# YAML validator.
 module Executors
   module Configurators
     module Yaml
@@ -15,7 +18,7 @@ module Executors
             when EXECUTOR_RULE_NAME
               unless Configurator::SIZE_REQUIRING_TYPES.include? value[Configurator::TYPE_KEY].downcase
                 if value[Configurator::SIZE_KEY]
-                  errors << Kwalify::ValidationError.new("\"size\" is not required.", path)
+                  errors << ValidationWarn.new("\"size\" is not required.", path, rule, value)
                 end
               end
           end
