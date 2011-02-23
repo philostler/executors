@@ -41,7 +41,7 @@ module Executors
                 create_executor e[ID_KEY], e[TYPE_KEY], e[SIZE_KEY]
               end
             else
-              logger.error { "Loading YAML document. Document is empty. Aborting" } unless logger.nil?
+              logger.error { "Validating YAML document. Document is empty. Aborting" } unless logger.nil?
             end
           end
         end
@@ -56,22 +56,31 @@ module Executors
           errors = (parser_errors and not parser_errors.empty?)
 
           if errors
+            errors_encountered = false
             parser_errors.each do |e|
-              depth = e.path.split("/").size
-
-              logger.error { "Loading YAML document. Error encountered on line " + e.linenum.to_s + ". " + e.message + " Aborting" } unless logger.nil?
+              case e
+                when ValidationWarn
+                  logger.warn { "Validating YAML document. The following validation error occurred on line " + e.linenum.to_s + " => " + e.message } unless logger.nil?
+                else
+                  logger.error { "Validating YAML document. The following validation error occurred on line " + e.linenum.to_s + " => " + e.message } unless logger.nil?
+                  errors_encountered = true
+              end
+            end
+            if errors_encountered
+              logger.error { "Validating YAML document. Validation error(s) occurred while loading document. Aborting" } unless logger.nil?
             end
           end
 
           return errors
         end
         def create_executor id, type, size
-          unless not get(id)
-            logger.error { "Loading YAML executor definition. \"id\" of \"" + id + "\" has already been defined. Duplicates not allowed. Skipping" } unless logger.nil?; next
-          end
-
           executor = Executors::Factory.create_executor type, size
-          add id, executor
+
+          begin
+            add id, executor
+          rescue ArgumentError
+            logger.error { "Implementing YAML document. \"id\" of \"" + id + "\" has already been defined. Duplicates not allowed. Skipping" } unless logger.nil?; next
+          end
         end
       end
     end
