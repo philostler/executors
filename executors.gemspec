@@ -17,4 +17,6 @@ Gem::Specification.new do |s|
 
   s.files         = Dir["lib/**/*.rb"] + Dir["*.rdoc"] + Dir["LICENSE"]
   s.require_paths = ["lib"]
+
+  s.add_dependency "kwalify", ">= 0.7.2"
 end
