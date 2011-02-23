@@ -1,6 +1,0 @@
-- id: identifier
-  type: fixed
-  size: 0
-- id: identifier_two
-  type: single
-  size: 1
