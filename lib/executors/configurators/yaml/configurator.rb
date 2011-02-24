@@ -9,8 +9,14 @@ module Executors
       module Configurator
         ID_KEY = "id"
         TYPE_KEY = "type"
+        TYPE_SCHEDULED = [ "scheduled", "single_scheduled" ]
         SIZE_KEY = "size"
         SIZE_REQUIRING_TYPES = [ "fixed", "scheduled" ]
+        TASKS_KEY = "tasks"
+        CLASS_KEY = "class"
+        SCHEDULE_KEY = "schedule"
+        START_KEY = "start"
+        EVERY_KEY = "every"
 
         # Loads a YAML document from the specified location and attempts instantiation from the contained configuration definition.
         #
@@ -39,6 +45,11 @@ module Executors
             if document
               document.each do |e|
                 create_executor e[ID_KEY], e[TYPE_KEY], e[SIZE_KEY]
+                if e[TASKS_KEY]
+                  e[TASKS_KEY].each do |t|
+                    create_task t[CLASS_KEY], t[SCHEDULE_KEY], t[START_KEY], t[EVERY_KEY]
+                  end
+                end
               end
             else
               logger.error { "Validating YAML document. Document is empty. Aborting" } unless logger.nil?
@@ -81,6 +92,11 @@ module Executors
           rescue ArgumentError
             logger.error { "Implementing YAML document. \"id\" of \"" + id + "\" has already been defined. Duplicates not allowed. Skipping" } unless logger.nil?; next
           end
+        end
+        def create_task clazz, schedule, start, every
+          clazz = Object.const_get(clazz).new
+          start = start.split "."
+          every = every.split "."
         end
       end
     end
