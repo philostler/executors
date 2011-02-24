@@ -7,7 +7,7 @@ class SizeNotRequiredTest < Test::Unit::TestCase
     @method = "load_yaml_file"
     @files = [ File.join(File.dirname(__FILE__), self.class.name.split(/(?=[A-Z])/).join("_").downcase) + ".yml" ]
     @logs = [
-      { :level => "warn", :message => "Validating YAML document. The following validation error occurred on line 1 => \"size\" is not required." }
+      { :level => "warn", :message => "Validating YAML document. The following validation error occurred on line 3 => \"size\" is not required." }
     ]
   end
 end
