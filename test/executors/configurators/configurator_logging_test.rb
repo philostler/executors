@@ -20,7 +20,7 @@ module ConfiguratorLoggingTest
       Executors::Services.send(@method, f)
     end
 
-    assert_equal @logs.size, @invocations, "Unexpected number of logging invocations"
+    assert_equal @logs.size, @invocations, "Less than expected number of logging invocations"
   end
 
   def debug progname = nil, &block
@@ -45,6 +45,7 @@ module ConfiguratorLoggingTest
 
   private
   def assert_log level, progname = nil, &block
+    assert_not_nil @logs[@invocations], "More than expected number of logging invocations"
     assert_equal @logs[@invocations][:message], yield, "Unexpected log message"
     assert_equal @logs[@invocations][:level], level, "Unexpected log level"
 
