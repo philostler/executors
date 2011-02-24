@@ -1,0 +1,7 @@
+- id: identifier
+  type: single
+  tasks:
+    - class: Object
+      schedule: fixed_delay
+      start: 1.minutes
+      every: 1.minutes
