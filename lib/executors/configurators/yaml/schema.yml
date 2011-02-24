@@ -1,19 +1,19 @@
 type: seq
 sequence:
   - type: map
-    name: executor
     mapping:
       "id":
         type: str
         required: true
         unique: yes
       "type":
-        name: executor_type
         type: str
+        name: type
         required: true
         pattern: /(cached|fixed|scheduled|single|single_scheduled)\z/i
       "size":
         type: int
+        name: size
         range: { min: 1 }
       "tasks":
         type: seq
@@ -22,14 +22,18 @@ sequence:
             mapping:
               "class":
                 type: str
+                name: class
                 required: true
               "schedule":
                 type: str
+                name: schedule
                 default: fixed_delay
                 pattern: /(fixed_delay|fixed_rate)\z/i
               "start":
                 type: str
-                pattern: /\d+[.](nanoseconds|microseconds|milliseconds|seconds|minutes|hours|days)\z/i
+                name: start
+                pattern: /^\d+[.](nanoseconds|microseconds|milliseconds|seconds|minutes|hours|days)\z/i
               "every":
                 type: str
-                pattern: /\d+[.](nanoseconds|microseconds|milliseconds|seconds|minutes|hours|days)\z/i
+                name: every
+                pattern: /^[^0]\d*[.](nanoseconds|microseconds|milliseconds|seconds|minutes|hours|days)\z/i
