@@ -1,0 +1,4 @@
+- id: identifier
+  type: single
+  tasks:
+    - class: Object
