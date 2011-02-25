@@ -17,6 +17,12 @@ module Executors
         TASK_START_KEY = "start"
         TASK_EVERY_KEY = "every"
 
+        TASK_SCHEDULE_FIXED_DELAY = "fixed_delay"
+        TASK_SCHEDULE_FIXED_RATE = "fixed_rate"
+
+        TASK_SCHEDULE_DEFAULT = TASK_SCHEDULE_FIXED_DELAY
+        TASK_START_DEFAULT = 0
+
         # Loads a YAML document from the specified location and attempts instantiation from the contained configuration definition.
         #
         # ===Example Usage
@@ -85,6 +91,8 @@ module Executors
           return errors
         end
         def create_executor id, type, size
+          type.downcase!
+
           executor = Executors::Factory.create_executor type, size
           add id, executor
 
@@ -95,14 +103,28 @@ module Executors
 
           case executor
             when ScheduledExecutorService
-              schedule.downcase!
-              if start
-                start = start.split "."
+              unless schedule
+                schedule = TASK_SCHEDULE_DEFAULT
               end
-              every = every.split "."
-              units = TimeUnit.value_of every[1].upcase
+              schedule.downcase!
 
-              executor.send("schedule_with_" + schedule, clazz, start ? start[0].to_i : 0, every[0].to_i, units)
+              units = TimeUnit.value_of every.split(".")[1].upcase
+
+              if start
+                start = start.split(".")[0].to_i
+              end
+              unless start
+                start = TASK_START_DEFAULT
+              end
+
+              every = every.split(".")[0].to_i
+              
+              case schedule
+                when TASK_SCHEDULE_FIXED_DELAY
+                  executor.schedule_with_fixed_delay clazz, start, every, units
+                when TASK_SCHEDULE_FIXED_RATE
+                  executor.schedule_at_fixed_rate clazz, start, every, units
+              end
             when ExecutorService
               begin
                 executor.submit clazz
