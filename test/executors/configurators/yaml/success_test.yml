@@ -1,4 +1,52 @@
 - id: identifier
+  type: cached
+- id: identifier_two
+  type: fixed
+  size: 1
+- id: identifier_three
+  type: scheduled
+  size: 1
+- id: identifier_four
+  type: single
+- id: identifier_five
+  type: single_scheduled
+- id: identifier_six
   type: single
   tasks:
-    - class: Object
+   - class: Object
+- id: identifier_seven
+  type: single_scheduled
+  tasks:
+   - class: Object
+     every: 1.minutes
+- id: identifier_eight
+  type: single_scheduled
+  tasks:
+   - class: Object
+     start: 1.minutes
+     every: 1.minutes
+- id: identifier_nine
+  type: single_scheduled
+  tasks:
+   - class: Object
+     schedule: fixed_rate
+     start: 1.minutes
+     every: 1.minutes
+- id: identifier_ten
+  type: SINGLE_SCHEDULED
+  tasks:
+   - class: Object
+     every: 1.MINUTES
+- id: identifier_eleven
+  type: SINGLE_SCHEDULED
+  tasks:
+   - class: Object
+     start: 1.MINUTES
+     every: 1.MINUTES
+- id: identifier_twelve
+  type: SINGLE_SCHEDULED
+  tasks:
+   - class: Object
+     schedule: fixed_rate
+     start: 1.MINUTES
+     every: 1.MINUTES
