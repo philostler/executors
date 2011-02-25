@@ -4,6 +4,7 @@ module ConfiguratorLoggingTest
   @method = nil
   @files = nil
   @logs = nil
+  @finally = nil
 
   @invocations = nil
 
@@ -21,6 +22,10 @@ module ConfiguratorLoggingTest
     end
 
     assert_equal @logs.size, @invocations, "Less than expected number of logging invocations"
+
+    if @finally
+      @finally.call
+    end
   end
 
   def debug progname = nil, &block
