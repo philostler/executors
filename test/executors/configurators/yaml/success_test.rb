@@ -7,7 +7,7 @@ class SuccessTest < Test::Unit::TestCase
     @method = "load_yaml_file"
     @files = [ File.join(File.dirname(__FILE__), self.class.name.split(/(?=[A-Z])/).join("_").downcase) + ".yml" ]
     @logs = [
-      { :level => "info", :message => "Completed YAML document. Loaded 2 executor(s) and 2 task(s)" }
+      { :level => "info", :message => "Completed YAML document. Loaded 12 executor(s) and 7 task(s)" }
     ]
   end
 end
