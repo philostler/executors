@@ -45,7 +45,7 @@ module ConfiguratorLoggingTest
 
   private
   def assert_log level, progname = nil, &block
-    assert_not_nil @logs[@invocations], "More than expected number of logging invocations"
+    assert_not_nil @logs[@invocations], "More than expected number of logging invocations\n[" + level + "] " + yield
     assert_equal @logs[@invocations][:message], yield, "Unexpected log message"
     assert_equal @logs[@invocations][:level], level, "Unexpected log level"
 
