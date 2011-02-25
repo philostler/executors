@@ -20,7 +20,8 @@ module Executors
 
         @@schema = Kwalify::Yaml.load_file(File.join(File.dirname(__FILE__), "schema.yml"))
 
-        attr_reader :executor_type, :task_start
+        @executor_type = nil
+        @task_start = nil
 
         def initialize
           super(@@schema)
