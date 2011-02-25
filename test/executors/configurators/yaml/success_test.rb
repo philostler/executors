@@ -9,5 +9,8 @@ class SuccessTest < Test::Unit::TestCase
     @logs = [
       { :level => "info", :message => "Completed YAML document. Loaded 12 executor(s) and 7 task(s)" }
     ]
+    @finally = Proc.new {
+      assert_equal 12, Executors::Services.size
+    }
   end
 end
