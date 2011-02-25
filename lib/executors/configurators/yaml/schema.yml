@@ -1,9 +1,11 @@
 type: seq
+name: document
 sequence:
   - type: map
     mapping:
       "id":
         type: str
+        name: id
         required: true
         unique: yes
       "type":
