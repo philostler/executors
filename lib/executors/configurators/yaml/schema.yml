@@ -21,6 +21,7 @@ sequence:
         type: seq
         sequence:
           - type: map
+            name: task
             mapping:
               "class":
                 type: str
@@ -29,7 +30,6 @@ sequence:
               "schedule":
                 type: str
                 name: schedule
-                default: fixed_delay
                 pattern: /(fixed_delay|fixed_rate)\z/i
               "start":
                 type: str
