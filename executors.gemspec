@@ -15,8 +15,9 @@ Gem::Specification.new do |s|
   s.has_rdoc = true
   s.rdoc_options << "--line-numbers"
 
-  s.files         = Dir["lib/**/*.rb"] + Dir["lib/**/*.yml"] + Dir["*.rdoc"] + Dir["LICENSE"]
+  s.files         = Dir["**/*.rb"] + Dir["*.rdoc"] + Dir["lib/**/*.yml"]  + Dir["LICENSE"]
   s.require_paths = ["lib"]
 
   s.add_dependency "kwalify", ">= 0.7.2"
+  s.add_development_dependency "rspec", ">= 2.5.0"
 end
