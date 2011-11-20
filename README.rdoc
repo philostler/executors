@@ -1,3 +1,5 @@
+=Executors has been DEPRECATED and is no longer actively developed or maintained. Take a look at Alloy[https://github.com/philostler/alloy] which integrates Java's Executor framework via a fluent interface.
+
 =Executors
 ==Introduction
 Executors is a wrapper for Java's Executor Service classes allowing seamless integration with JRuby on Rails.
