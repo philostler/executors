@@ -1,4 +1,4 @@
-=Executors has been DEPRECATED and is no longer actively developed or maintained. This repository exists as a reference. Take a look at Alloy[https://github.com/philostler/alloy] which interacts with Java's Executor framework via a fluent interface.
+=Executors has been DEPRECATED and is no longer actively developed or maintained. This repository exists as a reference only.
 
 =Executors
 ==Introduction
